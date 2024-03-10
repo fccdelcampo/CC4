@@ -24,6 +24,8 @@ public class BSTTraversal {
         public Integer[] array;
         public int farthestIndex;
         public int index = 0;
+        public int keyCount = 0;
+        public int printCounter;
 
         public BinarySearchTree(int length)
         {
@@ -55,6 +57,7 @@ public class BSTTraversal {
                     {
                         comparisonNode.left = key;
                         key.parent = comparisonNode;
+                        keyCount++;
                         return;
                     }
                     comparisonNode = comparisonNode.left;
@@ -65,6 +68,7 @@ public class BSTTraversal {
                     {
                         comparisonNode.right = key;
                         key.parent = comparisonNode;
+                        keyCount++;
                         return;
                     }
                     comparisonNode = comparisonNode.right;
@@ -80,7 +84,17 @@ public class BSTTraversal {
         {
             if (node == null) return;
 
-            System.out.print(node.data + ", ");
+            printCounter++;
+
+            if (printCounter <= keyCount)
+            {
+                System.out.print(node.data + ", ");
+            }
+            else
+            {
+                System.out.print(node.data);
+            }
+
             PreorderTraversal(node.left);
             PreorderTraversal(node.right);
         }
@@ -92,7 +106,17 @@ public class BSTTraversal {
 
             PostorderTraversal(node.left);
             PostorderTraversal(node.right);
-            System.out.print(node.data + ", ");
+
+            printCounter++;
+
+            if (printCounter <= keyCount)
+            {
+                System.out.print(node.data + ", ");
+            }
+            else
+            {
+                System.out.print(node.data);
+            }
         }
 
         // Inorder: <LT> <data> <RT>
@@ -101,7 +125,18 @@ public class BSTTraversal {
             if (node == null) return;
 
             InorderTraversal(node.left);
-            System.out.print(node.data + ", ");
+
+            printCounter++;
+
+            if (printCounter <= keyCount)
+            {
+                System.out.print(node.data + ", ");
+            }
+            else
+            {
+                System.out.print(node.data);
+            }
+
             InorderTraversal(node.right);
         }
 
@@ -231,11 +266,15 @@ public class BSTTraversal {
             keysArray[j] = keys[j];
         }
 
+
+
         BinarySearchTree bst = new BinarySearchTree(tokenCount);
         for (int k = 0; k < keysArray.length; k++)
         {
             bst.insertKey(keysArray[k]);
         }
+
+        System.out.println("Total key count: "+ bst.keyCount);
 
         // Print 1D Array Representation of BST
         System.out.println("1D ARRAY REPRESENTATION: \n");
@@ -248,16 +287,19 @@ public class BSTTraversal {
         // Print preorder traversal of BST
         System.out.print("PREORDER: ");
         bst.PreorderTraversal(bst.root);
+        bst.printCounter = 0;
         System.out.println("\n");
 
         // Print inorder traversal of BST
         System.out.print("INORDER: ");
         bst.InorderTraversal(bst.root);
+        bst.printCounter = 0;
         System.out.println("\n");
 
         // Print postorder traversal of BST
         System.out.print("POSTORDER: ");
         bst.PostorderTraversal(bst.root);
+        bst.printCounter = 0;
         System.out.println("\n");
 
         // Option to try again
