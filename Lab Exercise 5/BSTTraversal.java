@@ -183,48 +183,95 @@ public class BSTTraversal {
         int valueLength;
         int size = (int) Math.pow(2, height) - 1;
         // Print the index row
-        System.out.print("Index: ");
-        for (int i = 0; i < size; i++)
+        // System.out.print("Index: ");
+        // for (int i = 0; i < size; i++)
+        // {
+        //     System.out.print("| " + i);
+        //     if (keys[i] != null)
+        //         valueLength = String.valueOf(keys[i]).length();
+        //     else
+        //         valueLength = 0;
+        //     if (String.valueOf(i).length() < valueLength)
+        //     {
+        //         for (int j = 0; j < ( String.valueOf(keys[i]).length() - String.valueOf(i).length() ); j++)
+        //             System.out.print(" ");
+        //     }
+
+        //     System.out.print(" ");
+        // }
+        // System.out.println("|");
+
+        // // Print the keys row
+        // System.out.print("Key:   ");
+        // for (int i = 0; i < size; i++)
+        // {
+        //     System.out.print("| ");
+        //     if (keys[i] != null)
+        //     {
+        //         System.out.print(keys[i]);
+        //         valueLength = String.valueOf(keys[i]).length();
+        //     }
+        //     else
+        //     {
+        //         System.out.print("");
+        //         valueLength = 0;
+        //     }
+
+        //     if (String.valueOf(i).length() > valueLength)
+        //     {
+        //         for (int j = 0; j < (String.valueOf(i).length() - valueLength); j++)
+        //             System.out.print(" ");
+        //     }
+        //     System.out.print(" ");
+        // }
+        // System.out.println("|");
+        int pass = 0;
+        for (int i = 0; i < size; i += 20)
         {
-            System.out.print("| " + i);
-            if (keys[i] != null)
-                valueLength = String.valueOf(keys[i]).length();
-            else
-                valueLength = 0;
-            if (String.valueOf(i).length() < valueLength)
+            System.out.print("Index: ");
+            for (int j = i; (j < (pass + 1) * 20) && j < size; j++)
             {
-                for (int j = 0; j < ( String.valueOf(keys[i]).length() - String.valueOf(i).length() ); j++)
-                    System.out.print(" ");
-            }
+                System.out.print("| " + j);
+                if (keys[j] != null)
+                    valueLength = String.valueOf(keys[j]).length();
+                else
+                    valueLength = 0;
+                if (String.valueOf(i).length() < valueLength)
+                {
+                    for (int k = 0; k < ( String.valueOf(keys[j]).length() - String.valueOf(j).length() ); k++)
+                        System.out.print(" ");
+                }
 
-            System.out.print(" ");
+                System.out.print(" ");
+            }
+            System.out.println("|");
+
+            // Print the keys row
+            System.out.print("Key:   ");
+            for (int j = i; (j < (pass + 1) * 20) && j < size; j++)
+            {
+                System.out.print("| ");
+                if (keys[j] != null)
+                {
+                    System.out.print(keys[j]);
+                    valueLength = String.valueOf(keys[j]).length();
+                }
+                else
+                {
+                    System.out.print("");
+                    valueLength = 0;
+                }
+
+                if (String.valueOf(j).length() > valueLength)
+                {
+                    for (int k = 0; k < (String.valueOf(j).length() - valueLength); k++)
+                        System.out.print(" ");
+                }
+                System.out.print(" ");
+            }
+            System.out.println("|\n");
+            pass++;
         }
-        System.out.println("|");
-
-        // Print the keys row
-        System.out.print("Key:   ");
-        for (int i = 0; i < size; i++)
-        {
-            System.out.print("| ");
-            if (keys[i] != null)
-            {
-                System.out.print(keys[i]);
-                valueLength = String.valueOf(keys[i]).length();
-            }
-            else
-            {
-                System.out.print("");
-                valueLength = 0;
-            }
-
-            if (String.valueOf(i).length() > valueLength)
-            {
-                for (int j = 0; j < (String.valueOf(i).length() - valueLength); j++)
-                    System.out.print(" ");
-            }
-            System.out.print(" ");
-        }
-        System.out.println("|");
     }
 
     public static void main(String[] args) {
